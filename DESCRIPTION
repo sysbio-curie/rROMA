@@ -1,0 +1,35 @@
+Package: rRoma
+Title: An r implementation of ROMA
+Version: 0.0.4.2000
+Authors@R: person("Luca", "Albergante", email = "luca.albergante@gmail.com", role = c("aut", "cre"))
+Description: An R implementation of ROMA
+URL: https://github.com/Albluca/rRoma
+BugReports: https://github.com/Albluca/rRoma/issues
+Depends:
+    R (>= 3.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Imports:
+      scater,
+      irlba,
+      ggplot2,
+      gridExtra,
+      pheatmap,
+      parallel,
+      reshape,
+      shiny,
+      plotly,
+      R.utils,
+      readr,
+      colorRamps,
+      Rtsne,
+      ggsignif,
+      tictoc,
+      pbapply
+Suggests:
+      mice,
+      RNaviCell,
+      biomaRt,
+      SigCheck
