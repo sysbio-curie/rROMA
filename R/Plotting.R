@@ -418,8 +418,8 @@ PlotGeneWeight <- function(RomaData, PlotGenes = 40,
     } else {
       Data_to_reshape <- ExpressionMatrix
       Data_to_reshape$Gene <- rownames(ExpressionMatrix)
-      ReshapedData <- reshape::melt(Data_to_reshape[as.character(DF$Gene),],id="Gene")
-      colnames(ReshapedData) <- c("X1", "X2", "value")    
+      ReshapedData <- reshape::melt(Data_to_reshape[as.character(DF$Gene),])
+      # colnames(ReshapedData) <- c("X1", "X2", "value")    
       
       # ReshapedData <- as.data.frame(tidyr::pivot_longer(ExpressionMatrix[as.character(DF$Gene), ], names_to = "X1", values_to = "X2", cols = colnames(ExpressionMatrix)))
       # rownames(ReshapedData) <- 
