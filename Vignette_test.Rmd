@@ -118,7 +118,7 @@ In case you already have a GMT file with modules you want to test, you can also 
 
 You can now run rRoma on our dataset by simply specifying the expression dataset and the modules you want to test. Here we are fixing the seed for used for random permutations.
 ```{r, message = FALSE, results='hide', warning = FALSE}
-set.seed(69)
+# set.seed(69)
 rRoma.output <- rRoma.R(MatData, AllHall)
 ```
 
