@@ -41,7 +41,7 @@ if(!requireNamespace("devtools")){
 }
 
 if(!requireNamespace("rRoma")){
-  devtools::install_github("sysbio-curie/rRoma")
+  devtools::install_github("sysbio-curie/rRoma@small_changes")
 }
 ```
 
@@ -118,7 +118,7 @@ In case you already have a GMT file with modules you want to test, you can also 
 
 You can now run rRoma on our dataset by simply specifying the expression dataset and the modules you want to test. Here we are fixing the seed for used for random permutations.
 ```{r, message = FALSE, results='hide', warning = FALSE}
-set.seed(123)
+set.seed(69)
 rRoma.output <- rRoma.R(MatData, AllHall)
 ```
 
@@ -187,6 +187,7 @@ GeneMat <- GetTopContrib(rRoma.output,
                          Selected = overdispersed.modules,
                          nGenes = 0.1, OrderType = "Abs", Mode = "Wei", Plot = TRUE)
 ```
+
 ```{r}
 GeneMat$Table
 ```
