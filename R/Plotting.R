@@ -84,6 +84,7 @@ Plot.Genesets.Samples <- function(RomaData, Selected = NULL,
   }
   
   if(length(Selected) < 2){
+    print('hello')
     print("Heatmap is not clustering module activities when less than 2 modules are selected")
   }
   if((length(ColorGradient) %% 2) != 0){
