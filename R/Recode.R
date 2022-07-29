@@ -685,12 +685,17 @@ rRoma.R <- function(ExpressionMatrix,
           GeneToSample <- length(CompatibleGenes)
         }
         
+        Sampling<- function(i){
+          set.seed(i)
+          return(sample(x = rownames(ExpressionMatrix), size = GeneToSample, replace = FALSE))
+        }
+        
         if(GeneSelMode == "All"){
-          SampledsGeneList <- lapply(as.list(1:nSamples), function(i){sample(x = rownames(ExpressionMatrix), size = GeneToSample, replace = FALSE)})
+          SampledsGeneList <- lapply(as.list(1:nSamples), Sampling)
         }
         
         if(GeneSelMode == "Others"){
-          SampledsGeneList <- lapply(as.list(1:nSamples), function(i){sample(x = setdiff(rownames(ExpressionMatrix), SelGenes), size = GeneToSample, replace = FALSE)})
+          SampledsGeneList <- lapply(as.list(1:nSamples), Sampling)
         }
         
         if(!exists("SampledsGeneList")){

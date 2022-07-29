@@ -84,7 +84,8 @@ Plot.Genesets.Samples <- function(RomaData, Selected = NULL,
   }
   
   if(length(Selected) < 2){
-    stop("Heatmap is not clustering module activities when less than 2 modules are selected")
+    print('hello')
+    print("Heatmap is not clustering module activities when less than 2 modules are selected")
   }
   if((length(ColorGradient) %% 2) != 0){
     stop("the length of ColorGradient MUST be a multiple of 2")
@@ -418,8 +419,8 @@ PlotGeneWeight <- function(RomaData, PlotGenes = 40,
     } else {
       Data_to_reshape <- ExpressionMatrix
       Data_to_reshape$Gene <- rownames(ExpressionMatrix)
-      ReshapedData <- reshape::melt(Data_to_reshape[as.character(DF$Gene),],id="Gene")
-      colnames(ReshapedData) <- c("X1", "X2", "value")    
+      ReshapedData <- reshape::melt(Data_to_reshape[as.character(DF$Gene),])
+      colnames(ReshapedData) <- c("X1", "X2", "value")
       
       # ReshapedData <- as.data.frame(tidyr::pivot_longer(ExpressionMatrix[as.character(DF$Gene), ], names_to = "X1", values_to = "X2", cols = colnames(ExpressionMatrix)))
       # rownames(ReshapedData) <- 
@@ -540,9 +541,12 @@ PlotSampleProjections <- function(RomaData, PlotSamples = 40,
       
       if(FullExpDist){
         ReshapedData <- reshape::melt(ExpressionMatrix[, as.character(DF$Samples)])
+        colnames(ReshapedData) <- c("X1", "X2", "value")
       } else {
         
         ReshapedData <- reshape::melt(ExpressionMatrix[GeneNames, as.character(DF$Samples)])
+        colnames(ReshapedData) <- c("X1", "X2", "value")
+        
       }
       
       
