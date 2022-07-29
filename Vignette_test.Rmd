@@ -41,7 +41,7 @@ if(!requireNamespace("devtools")){
 }
 
 if(!requireNamespace("rRoma")){
-  devtools::install_github("sysbio-curie/rRoma@small_changes")
+  devtools::install_github("sysbio-curie/rRoma", ref = "small_changes")
 }
 ```
 
