@@ -541,11 +541,11 @@ PlotSampleProjections <- function(RomaData, PlotSamples = 40,
       
       if(FullExpDist){
         ReshapedData <- reshape::melt(ExpressionMatrix[, as.character(DF$Samples)])
-        colnames(ReshapedData) <- c("X1", "X2", "value")
+        colnames(ReshapedData) <- c("X2", "value")
       } else {
         
         ReshapedData <- reshape::melt(ExpressionMatrix[GeneNames, as.character(DF$Samples)])
-        colnames(ReshapedData) <- c("X1", "X2", "value")
+        colnames(ReshapedData) <- c("X2", "value")
         
       }
       
