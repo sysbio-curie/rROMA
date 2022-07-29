@@ -84,7 +84,6 @@ Plot.Genesets.Samples <- function(RomaData, Selected = NULL,
   }
   
   if(length(Selected) < 2){
-    print('hello')
     print("Heatmap is not clustering module activities when less than 2 modules are selected")
   }
   if((length(ColorGradient) %% 2) != 0){
@@ -820,7 +819,7 @@ ExploreGeneProperties <- function(
   if(PlotExpDist){
     ExpData <- data.frame(
       Sample = colnames(ExpressionMatrix),
-      Exp = ExpressionMatrix[GeneName,],
+      Exp = as.numeric(ExpressionMatrix[GeneName,]),
       Condition = "Total",
       stringsAsFactors = FALSE
       )
@@ -832,7 +831,7 @@ ExploreGeneProperties <- function(
         ExpData,
         data.frame(
           Sample = colnames(ExpressionMatrix),
-          Exp = ExpressionMatrix[GeneName,],
+          Exp = as.numeric(ExpressionMatrix[GeneName,]),
           Condition = GroupInfo[colnames(ExpressionMatrix)],
           stringsAsFactors = FALSE
         )
@@ -964,7 +963,7 @@ ExploreGeneProperties <- function(
     
     if(!is.null(GroupInfo)){
       
-      Mod.DF <- data.frame(Mod.DF, Exp = GeneExp[Mod.DF$Sample], Groups = GroupInfo[Mod.DF$Sample])
+      Mod.DF <- data.frame(Mod.DF,Exp =  as.numeric(GeneExp[Mod.DF$Sample]), Groups = GroupInfo[Mod.DF$Sample])
       
       SplDS <- split(Mod.DF, Mod.DF$variable)
       
