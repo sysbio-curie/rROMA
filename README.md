@@ -1,4 +1,4 @@
-# rROMA pipeline
+# rROMA package
 
 The rROMA package provides an R implementation of the algorithm [ROMA](http://journal.frontiersin.org/article/10.3389/fgene.2016.00018/full)
 
