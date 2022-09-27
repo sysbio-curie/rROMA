@@ -1,17 +1,6 @@
----
-title: "rRoma on Cystic Fibrosis"
-author: "Matthieu Cornet, Loredana Martignetti"
-contact: "loredana.martignetti@curie.fr"
-date: "June 16, 2022"
-output:
-  html_document:
-    toc: yes
-    number_sections: yes
-  pdf_document:
-    toc: yes
----
+# rROMA pipeline
 
-This package provides an R implementation of [ROMA](http://journal.frontiersin.org/article/10.3389/fgene.2016.00018/full) INSERER LE LIEN VERS LE NOUVEL ARTICLE ICI !
+The rROMA package provides an R implementation of the algorithm [ROMA](http://journal.frontiersin.org/article/10.3389/fgene.2016.00018/full)
 
 A Java implementation developed by Andrei Zynovyev and co-authors is also [available](https://github.com/sysbio-curie/Roma).
 
