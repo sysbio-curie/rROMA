@@ -138,6 +138,7 @@ We want to see which samples are responsible for the shift. This can be done by 
 ```{r}
 Plot.Genesets.Samples(rRoma.output, Selected = shifted.modules, GroupInfo = Type, cluster_cols = TRUE)
 ```
+![image](https://user-images.githubusercontent.com/36893984/193145414-011f1020-b844-4813-b077-741e899ebf5c.png)
 
 In case we didn't know the groups before the analysis, this representation can help us define groups of samples that behave similarly on a pathway level.
 Here we already knew the groups. We can see that GSM5356221 behaves as an outlier. It could be interesting to look at metadata to understand why he behaves differently. Here we see that genes related to Apical surface, fatty acid metabolism and heme metabolism tend to be more expressed in cf patients.
