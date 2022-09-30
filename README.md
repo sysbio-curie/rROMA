@@ -4,6 +4,11 @@ The rROMA package provides an R implementation of the algorithm [ROMA](http://jo
 
 A Java implementation developed by Andrei Zynovyev and co-authors is also [available](https://github.com/sysbio-curie/Roma).
 
+Please visit our [vignette](https://sysbio-curie.github.io/rROMA/index.html) to install and run rROMA ! 
+
+
+
+
 # Installing rROMA
 
 The rRoma package relies on the `scater` and `biomaRt` packages, which are available only on BioConductor. These packages can be installed with the following command.
@@ -554,4 +559,3 @@ We recommend the following parameters for a first use of Roma, to have a good tr
 ```{r, message = FALSE, results='hide', warning = FALSE}
 rRoma.output.2 <- rRoma.R(ExpressionMatrix = MatData, ModuleList = AllHall, UseWeights = TRUE, DefaultWeight = 1, GeneOutDetection = 'L1OutExpOut', PCSignMode = "UseMeanExpressionAllWeights", OutGeneSpace = 5, UseParallel = TRUE, nCores = 3, ClusType = "FORK", OutlierRarelyFoundThr = 2)
 ```
-
