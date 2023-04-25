@@ -369,6 +369,8 @@ rRoma.R <- function(ExpressionMatrix,
         Genes_pathways_counts[[j]] <- Genes_pathways_counts[[j]]+  1
       }
     }
+
+    print(ModuleList[[i]]$Name)
     
     if(UseParallel){
       SelGenes <- DetectOutliers(GeneOutDetection = GeneOutDetection, GeneOutThr = GeneOutThr, ModulePCACenter = FALSE,
