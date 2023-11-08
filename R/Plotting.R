@@ -8,7 +8,6 @@
 #' @export
 #'
 #' @examples
-
 Plot.Genesets.vs.Sampled <- function(RomaData, Selected = NULL, Plot = "both"){
   
   if(is.null(Selected)){
@@ -71,21 +70,6 @@ Plot.Genesets.vs.Sampled <- function(RomaData, Selected = NULL, Plot = "both"){
 #' @export
 #'
 #' @examples
-#' 
-
-RomaData <- rRoma.output
-Selected <- shifted.modules
-GenesetMargin <-  4
-SampleMargin <- 4
-Fixed <- 60
-# ColorGradient <- colorRamps::blue2red(50)
-cluster_cols <- TRUE
-GroupInfo <- Type
-HMTite <- "Selected Genesets"
-Normalize <- FALSE
-Transpose <- FALSE
-ZeroColor <- NULL
-
 Plot.Genesets.Samples <- function(RomaData, 
                                   Selected = NULL,
                                   GenesetMargin = 4, 
@@ -375,20 +359,6 @@ Plot.Genesets.Samples <- function(RomaData,
   }
   
 }
-
-
-
-
-
-
-
-
-RomaData <- Okuda.ROMA_output
-ExpressionMatrix <- as.data.frame(Saint_Criq@RNA_matrix)
-LogExpression <- FALSE
-Selected <- NULL
-PlotGenes <- 40
-PlotWeightSign <- FALSE
 
 #' Plot gene weight across selected samples
 #'
