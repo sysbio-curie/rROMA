@@ -71,13 +71,34 @@ Plot.Genesets.vs.Sampled <- function(RomaData, Selected = NULL, Plot = "both"){
 #' @export
 #'
 #' @examples
+#' 
 
-Plot.Genesets.Samples <- function(RomaData, Selected = NULL,
-                          GenesetMargin = 4, SampleMargin = 4,
-                          ColorGradient = colorRamps::blue2red(50),
-                          cluster_cols = FALSE, GroupInfo = NULL,
-                          HMTite = "Selected Genesets", AggByGroupsFL = list(),
-                          Normalize = FALSE, Transpose = FALSE, ZeroColor = NULL){
+RomaData <- rRoma.output
+Selected <- shifted.modules
+GenesetMargin <-  4
+SampleMargin <- 4
+Fixed <- 60
+# ColorGradient <- colorRamps::blue2red(50)
+cluster_cols <- TRUE
+GroupInfo <- Type
+HMTite <- "Selected Genesets"
+Normalize <- FALSE
+Transpose <- FALSE
+ZeroColor <- NULL
+
+Plot.Genesets.Samples <- function(RomaData, 
+                                  Selected = NULL,
+                                  GenesetMargin = 4, 
+                                  SampleMargin = 4,
+                                  Fixed = NULL,
+                                  # ColorGradient = colorRamps::blue2red(50),
+                                  cluster_cols = FALSE, 
+                                  GroupInfo = NULL,
+                                  HMTite = "Selected Genesets", 
+                                  AggByGroupsFL = list(),
+                                  Normalize = FALSE, 
+                                  Transpose = FALSE, 
+                                  ZeroColor = NULL){
   
   if(is.null(Selected)){
     Selected <- 1:nrow(RomaData$SampleMatrix)
@@ -86,9 +107,9 @@ Plot.Genesets.Samples <- function(RomaData, Selected = NULL,
   if(length(Selected) < 2){
     print("Heatmap is not clustering module activities when less than 2 modules are selected")
   }
-  if((length(ColorGradient) %% 2) != 0){
-    stop("the length of ColorGradient MUST be a multiple of 2")
-  }
+  # if((length(ColorGradient) %% 2) != 0){
+  #   stop("the length of ColorGradient MUST be a multiple of 2")
+  # }
   
   if(length(intersect(Selected, 1:nrow(RomaData$SampleMatrix)))<1){
     print("No Geneset selected")
@@ -146,10 +167,23 @@ Plot.Genesets.Samples <- function(RomaData, Selected = NULL,
   
   # Compute breaks
   
-  MatRange <- range(PlotMat)
-  BrkPoints <- rep(NA, length(ColorGradient) + 1)
+  if (is.null(Fixed)){
+    
+    # Classic palette BuPu, with 4 colors
+    coul <- brewer.pal(9, "RdBu")
+    ColorGradient <- colorRampPalette(coul)(60)
+    
+    MatRange <- range(PlotMat)
+  } else {
+    
+    coul <- brewer.pal(9, "RdBu")
+    ColorGradient <- colorRampPalette(coul)(Fixed)
+    
+    MatRange <- c(-1, 1)
+  }
   
   tColorGradient <- ColorGradient
+  BrkPoints <- rep(NA, length(ColorGradient) + 1)
   
   if(prod(MatRange) > 0){
     # Only positive or only negative values are observed
@@ -199,21 +233,37 @@ Plot.Genesets.Samples <- function(RomaData, Selected = NULL,
     
   }
   
+  Groups <- AddInfo$Groups
+  GroupsColor <- brewer.pal(8, "Set2")[1:length(unique(AddInfo$Groups))]
+  # Groups <- as.character(Groups)
+  names(GroupsColor) <- unique(AddInfo$Groups)
+  anno_colors <- list(Groups = GroupsColor)
   
   if(Transpose){
     pheatmap::pheatmap(t(PlotMat),
-                       color = tColorGradient, breaks = BrkPoints,
+                       color = tColorGradient, 
+                       breaks = BrkPoints,
                        main = HMTite,
-                       cluster_rows = tClusCol, cluster_cols = tClusRow,
+                       cluster_rows = tClusCol, 
+                       cluster_cols = tClusRow,
                        annotation_row = AddInfo)
   } else {
     pheatmap::pheatmap(PlotMat,
-                       color = tColorGradient, breaks = BrkPoints,
+                       color = tColorGradient, 
+                       breaks = BrkPoints,
                        main = HMTite,
-                       cluster_cols = tClusCol, cluster_rows = tClusRow,
-                       annotation_col = AddInfo)
+                       cluster_cols = tClusCol, 
+                       cluster_rows = tClusRow,
+                       border_color = "NA",
+                       annotation_col = AddInfo,
+                       annotation_colors =anno_colors)
   }
   
+  
+  newCols <- colorRampPalette(grDevices::rainbow(length(unique(AddInfo$Groups))))
+  mycolors <- newCols(length(unique(AddInfo$Groups)))
+  names(mycolors) <- unique(AddInfo$Groups)
+  mycolors <- list(category = mycolors)
   
   
   if(length(AggByGroupsFL)>0 & !is.null(AddInfo)){
@@ -333,7 +383,12 @@ Plot.Genesets.Samples <- function(RomaData, Selected = NULL,
 
 
 
-
+RomaData <- Okuda.ROMA_output
+ExpressionMatrix <- as.data.frame(Saint_Criq@RNA_matrix)
+LogExpression <- FALSE
+Selected <- NULL
+PlotGenes <- 40
+PlotWeightSign <- FALSE
 
 #' Plot gene weight across selected samples
 #'
@@ -417,7 +472,7 @@ PlotGeneWeight <- function(RomaData, PlotGenes = 40,
       
     } else {
       Data_to_reshape <- ExpressionMatrix
-      Data_to_reshape$Gene <- rownames(ExpressionMatrix)
+      # Data_to_reshape$Gene <- rownames(ExpressionMatrix)
       ReshapedData <- reshape::melt(Data_to_reshape[as.character(DF$Gene),])
       colnames(ReshapedData) <- c("X1", "X2", "value")
       

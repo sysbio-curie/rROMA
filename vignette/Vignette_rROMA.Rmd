@@ -151,7 +151,11 @@ shifted.modules <- which(rRoma.output$ModuleMatrix[, "ppv Median Exp"] <= 0.05)
 We want to see which samples are responsible for the shift. This can be done by looking at Sample Scores. The function plots a heatmap of these score:
 
 ```{r}
-Plot.Genesets.Samples(rRoma.output, Selected = shifted.modules, GroupInfo = Type, cluster_cols = TRUE)
+Plot.Genesets.Samples(rRoma.output, 
+                      Selected = shifted.modules, 
+                      Fixed = 50,
+                      GroupInfo = Type, 
+                      cluster_cols = TRUE)
 ```
 
 In case we didn't know the groups before the analysis, this representation can help us define groups of samples that behave similarly on a pathway level.
@@ -175,7 +179,11 @@ For such pathways we are interested in both sample scores and gene scores. The f
 
 We first plot the same heatmap as before to visualize sample scores:
 ```{r}
-Plot.Genesets.Samples(rRoma.output, Selected = overdispersed.modules, GroupInfo = Type, cluster_cols = TRUE)
+Plot.Genesets.Samples(rRoma.output, 
+                      Selected = overdispersed.modules, 
+                      Fixed = 50,
+                      GroupInfo = Type, 
+                      cluster_cols = TRUE)
 ```
 
 It appears that this module is also interesting to compare CF versus control samples.
@@ -189,7 +197,10 @@ The function will return a table (Table) with the computed information and the m
 ```{r}
 GeneMat <- GetTopContrib(rRoma.output,
                          Selected = overdispersed.modules,
-                         nGenes = 0.1, OrderType = "Abs", Mode = "Wei", Plot = TRUE)
+                         nGenes = 0.1, 
+                         OrderType = "Abs", 
+                         Mode = "Wei", 
+                         Plot = TRUE)
 ```
 ```{r}
 GeneMat$Table
