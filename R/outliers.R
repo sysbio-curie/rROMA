@@ -35,7 +35,6 @@ DetectOutliers <- function(GeneOutDetection, GeneOutThr, ModulePCACenter,
   
   GetAllPC1Var <- function(i){
     
-    
     tData <- ExpressionData[-i, ]
     
     if(6 <= min(dim(tData))){
